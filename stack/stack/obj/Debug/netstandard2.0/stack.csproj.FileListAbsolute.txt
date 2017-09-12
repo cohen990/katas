@@ -1,0 +1,8 @@
+/Users/dancohen/Git/katas/stack/stack/bin/Debug/netstandard2.0/stack.deps.json
+/Users/dancohen/Git/katas/stack/stack/bin/Debug/netstandard2.0/stack.dll
+/Users/dancohen/Git/katas/stack/stack/bin/Debug/netstandard2.0/stack.pdb
+/Users/dancohen/Git/katas/stack/stack/obj/Debug/netstandard2.0/stack.csproj.CoreCompileInputs.cache
+/Users/dancohen/Git/katas/stack/stack/obj/Debug/netstandard2.0/stack.AssemblyInfoInputs.cache
+/Users/dancohen/Git/katas/stack/stack/obj/Debug/netstandard2.0/stack.AssemblyInfo.cs
+/Users/dancohen/Git/katas/stack/stack/obj/Debug/netstandard2.0/stack.dll
+/Users/dancohen/Git/katas/stack/stack/obj/Debug/netstandard2.0/stack.pdb
