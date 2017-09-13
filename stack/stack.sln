@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stack", "stack\stack.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stack-tests", "stack-tests\stack-tests.csproj", "{3F7008C3-7E5D-4BDB-9B49-A9B07B562B28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stack-fsharp", "stack-fsharp\stack-fsharp.fsproj", "{30CA886B-5826-4DEA-A0FA-25DAB78D0B10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stack-fsharp-tests", "stack-fsharp-tests\stack-fsharp-tests.fsproj", "{3F54AD20-0320-4070-9007-3AFB55E1CE50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
