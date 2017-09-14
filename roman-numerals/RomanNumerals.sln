@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanNumerals", "RomanNumer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanNumeralsTests", "RomanNumeralsTests\RomanNumeralsTests.csproj", "{6ADFCC4B-B146-4C51-9A32-5E725C5B6BF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanNumeralsFSharp", "RomanNumeralsFSharp\RomanNumeralsFSharp.fsproj", "{1464CBEF-375E-494B-A7A1-0EE006DFB6DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanNumeralsFSharpTests", "RomanNumeralsFSharpTests\RomanNumeralsFSharpTests.fsproj", "{A92A89EB-22CA-4F30-B9B2-6272548C52C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
