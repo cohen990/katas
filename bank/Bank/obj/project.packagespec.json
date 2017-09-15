@@ -1,0 +1,29 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/dancohen/Git/katas/bank/Bank/Bank.csproj",
+    "projectName": "Bank",
+    "projectPath": "/Users/dancohen/Git/katas/bank/Bank/Bank.csproj",
+    "outputPath": "/Users/dancohen/Git/katas/bank/Bank/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netstandard2.0"
+    ],
+    "frameworks": {
+      "netstandard2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netstandard2.0": {
+      "dependencies": {
+        "NETStandard.Library": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "2.0.0"
+        }
+      }
+    }
+  }
+}
