@@ -1,9 +1,0 @@
-/Users/dancohen/Git/katas/bank/Bank/bin/Debug/netstandard2.0/Bank.deps.json
-/Users/dancohen/Git/katas/bank/Bank/bin/Debug/netstandard2.0/Bank.dll
-/Users/dancohen/Git/katas/bank/Bank/bin/Debug/netstandard2.0/Bank.pdb
-/Users/dancohen/Git/katas/bank/Bank/obj/Debug/netstandard2.0/Bank.csprojResolveAssemblyReference.cache
-/Users/dancohen/Git/katas/bank/Bank/obj/Debug/netstandard2.0/Bank.csproj.CoreCompileInputs.cache
-/Users/dancohen/Git/katas/bank/Bank/obj/Debug/netstandard2.0/Bank.AssemblyInfoInputs.cache
-/Users/dancohen/Git/katas/bank/Bank/obj/Debug/netstandard2.0/Bank.AssemblyInfo.cs
-/Users/dancohen/Git/katas/bank/Bank/obj/Debug/netstandard2.0/Bank.dll
-/Users/dancohen/Git/katas/bank/Bank/obj/Debug/netstandard2.0/Bank.pdb
