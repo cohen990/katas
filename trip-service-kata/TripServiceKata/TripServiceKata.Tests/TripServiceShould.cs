@@ -70,10 +70,11 @@ namespace TripServiceKata.Tests
 
         private class TestableTripService : TripService
         {
-            public TestableTripService(IUserSession userSession) : base(userSession)
+            protected override User.User GetLoggedInUser()
             {
+                return _loggedInUser;
             }
-
+            
             protected override List<Trip.Trip> TripsBy(User.User user)
             {
                 return user.Trips();
