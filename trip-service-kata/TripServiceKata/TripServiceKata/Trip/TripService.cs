@@ -15,35 +15,25 @@ namespace TripServiceKata.Trip
 
         public List<Trip> GetTripsByUser(User.User user)
         {
-            List<Trip> tripList = new List<Trip>();
-            User.User loggedUser = _userSession.GetLoggedUser();
-            bool isFriend = false;
-            if (loggedUser != null)
-            {
-                foreach(User.User friend in user.GetFriends())
-                {
-                    if (friend.Equals(loggedUser))
-                    {
-                        isFriend = true;
-                        break;
-                    }
-                }
-                if (isFriend)
-                {
-                    tripList = TripsBy(user);
-                }
-                return tripList;
-            }
-            else
+            if (_userSession.GetLoggedInUser() == null)
             {
                 throw new UserNotLoggedInException();
             }
+
+            return user.IsFriendsWith(_userSession.GetLoggedInUser())
+                        ? TripsBy(user)
+                        : NoTrips();
         }
 
         protected virtual List<Trip> TripsBy(User.User user)
         {
             var tripList = TripDAO.FindTripsByUser(user);
             return tripList;
+        }
+
+        private static List<Trip> NoTrips()
+        {
+            return new List<Trip>();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace TripServiceKata.Tests
             _loggedInUser = RegisteredUser;
             
             _userSession = Substitute.For<IUserSession>();
-            _userSession.GetLoggedUser().Returns(_loggedInUser);
+            _userSession.GetLoggedInUser().Returns(_loggedInUser);
 
             _tripService = new TestableTripService(_userSession);
         }
@@ -36,7 +36,7 @@ namespace TripServiceKata.Tests
         public void ShouldThrowAnExceptionsWhenUserIsNotLoggedIn()
         {
             _loggedInUser = Guest;
-            _userSession.GetLoggedUser().Returns(_loggedInUser);
+            _userSession.GetLoggedInUser().Returns(_loggedInUser);
             
             Assert.Throws<UserNotLoggedInException>(
                 () => _tripService.GetTripsByUser(UnusedUser));
