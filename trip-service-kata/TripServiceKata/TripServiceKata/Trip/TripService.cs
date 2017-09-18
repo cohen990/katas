@@ -6,23 +6,21 @@ namespace TripServiceKata.Trip
 {
     public class TripService
     {
-        private readonly IUserSession _userSession;
-
-        protected TripService(IUserSession userSession)
-        {
-            _userSession = userSession;
-        }
-
         public List<Trip> GetTripsByUser(User.User user)
         {
-            if (_userSession.GetLoggedInUser() == null)
+            if (GetLoggedInUser() == null)
             {
                 throw new UserNotLoggedInException();
             }
 
-            return user.IsFriendsWith(_userSession.GetLoggedInUser())
+            return user.IsFriendsWith(GetLoggedInUser())
                         ? TripsBy(user)
                         : NoTrips();
+        }
+
+        protected virtual User.User GetLoggedInUser()
+        {
+            return UserSession.GetInstance().GetLoggedInUser();
         }
 
         protected virtual List<Trip> TripsBy(User.User user)
