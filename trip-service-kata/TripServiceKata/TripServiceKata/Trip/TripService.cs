@@ -1,26 +1,20 @@
 ﻿using System.Collections.Generic;
 using TripServiceKata.Exception;
-using TripServiceKata.User;
 
 namespace TripServiceKata.Trip
 {
     public class TripService
     {
-        public List<Trip> GetTripsByUser(User.User user)
+        public List<Trip> GetTripsByUser(User.User user, User.User loggedInUser)
         {
-            if (GetLoggedInUser() == null)
+            if (loggedInUser == null)
             {
                 throw new UserNotLoggedInException();
             }
 
-            return user.IsFriendsWith(GetLoggedInUser())
+            return user.IsFriendsWith(loggedInUser)
                         ? TripsBy(user)
                         : NoTrips();
-        }
-
-        protected virtual User.User GetLoggedInUser()
-        {
-            return UserSession.GetInstance().GetLoggedInUser();
         }
 
         protected virtual List<Trip> TripsBy(User.User user)
