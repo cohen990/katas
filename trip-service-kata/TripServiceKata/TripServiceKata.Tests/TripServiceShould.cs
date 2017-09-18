@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 using TripServiceKata.Exception;
 using TripServiceKata.Trip;
@@ -16,13 +17,17 @@ namespace TripServiceKata.Tests
         private static readonly Trip.Trip ToLondon = new Trip.Trip();
 
         private TripService _tripService;
+        private ITripDAO _tripDao;
 
         [SetUp]
         public void SetUp()
         {
-            _tripService = new TestableTripService();
+
+            _tripDao = Substitute.For<ITripDAO>();
+
+            _tripService = new TripService(_tripDao);
         }
-        
+
         [Test]
         public void ShouldThrowAnExceptionsWhenUserIsNotLoggedIn()
         {
@@ -37,9 +42,9 @@ namespace TripServiceKata.Tests
                 .FriendsWith(AnotherUser)
                 .WithTrips(ToBrazil)
                 .Build();
-            
+
             var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
-            
+
             Assert.IsEmpty(friendTrips);
         }
 
@@ -50,18 +55,11 @@ namespace TripServiceKata.Tests
                 .FriendsWith(AnotherUser, RegisteredUser)
                 .WithTrips(ToBrazil, ToLondon)
                 .Build();
-            
-            var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
-            
-            Assert.AreEqual(2, friendTrips.Count);
-        }
 
-        private class TestableTripService : TripService
-        {
-            protected override List<Trip.Trip> TripsBy(User.User user)
-            {
-                return user.Trips();
-            }
+            _tripDao.TripsBy(friend).Returns(friend.Trips());
+            var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
+
+            Assert.AreEqual(2, friendTrips.Count);
         }
     }
 }
