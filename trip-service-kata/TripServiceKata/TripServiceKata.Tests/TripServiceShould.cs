@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using NSubstitute;
 using NUnit.Framework;
 using TripServiceKata.Exception;
 using TripServiceKata.Trip;
-using TripServiceKata.User;
 
 namespace TripServiceKata.Tests
 {
@@ -17,29 +15,19 @@ namespace TripServiceKata.Tests
         private static readonly Trip.Trip ToBrazil = new Trip.Trip();
         private static readonly Trip.Trip ToLondon = new Trip.Trip();
 
-        private static User.User _loggedInUser;
         private TripService _tripService;
-        private IUserSession _userSession;
 
         [SetUp]
         public void SetUp()
         {
-            _loggedInUser = RegisteredUser;
-            
-            _userSession = Substitute.For<IUserSession>();
-            _userSession.GetLoggedInUser().Returns(_loggedInUser);
-
-            _tripService = new TestableTripService(_userSession);
+            _tripService = new TestableTripService();
         }
         
         [Test]
         public void ShouldThrowAnExceptionsWhenUserIsNotLoggedIn()
         {
-            _loggedInUser = Guest;
-            _userSession.GetLoggedInUser().Returns(_loggedInUser);
-            
             Assert.Throws<UserNotLoggedInException>(
-                () => _tripService.GetTripsByUser(UnusedUser));
+                () => _tripService.GetTripsByUser(UnusedUser, Guest));
         }
 
         [Test]
@@ -50,7 +38,7 @@ namespace TripServiceKata.Tests
                 .WithTrips(ToBrazil)
                 .Build();
             
-            var friendTrips = _tripService.GetTripsByUser(friend);
+            var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
             
             Assert.IsEmpty(friendTrips);
         }
@@ -59,22 +47,17 @@ namespace TripServiceKata.Tests
         public void ShouldReturnTripsWhenUsersAreFriends()
         {
             var friend = UserBuilder.User()
-                .FriendsWith(AnotherUser, _loggedInUser)
+                .FriendsWith(AnotherUser, RegisteredUser)
                 .WithTrips(ToBrazil, ToLondon)
                 .Build();
             
-            var friendTrips = _tripService.GetTripsByUser(friend);
+            var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
             
             Assert.AreEqual(2, friendTrips.Count);
         }
 
         private class TestableTripService : TripService
         {
-            protected override User.User GetLoggedInUser()
-            {
-                return _loggedInUser;
-            }
-            
             protected override List<Trip.Trip> TripsBy(User.User user)
             {
                 return user.Trips();
