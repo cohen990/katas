@@ -5,9 +5,9 @@ type public 'a Stack =
         | StackNode of 'a * 'a Stack
         
 module public Stack =
-    let Push (item: 'a, stack: 'a Stack) =
+    let Push item stack =
         StackNode(item, stack)
-    let Pop (stack: 'a Stack) = 
+    let Pop stack = 
          match stack with
-            | StackNode(head, tail) -> head, tail
-            | EmptyStack -> failwith "empty stack"
+            | StackNode(head, tail) -> Some(head, tail)
+            | EmptyStack -> None

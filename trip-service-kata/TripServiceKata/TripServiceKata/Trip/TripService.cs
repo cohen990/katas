@@ -14,16 +14,21 @@ namespace TripServiceKata.Trip
             _tripDAO = tripDao;
         }
 
-        public List<Trip> GetTripsByUser(User.User user, User.User loggedInUser)
+        public List<Trip> GetFriendTrips(User.User friend, User.User loggedInUser)
+        {
+            Validate(loggedInUser);
+
+            return friend.IsFriendsWith(loggedInUser)
+                        ? _tripDAO.TripsBy(friend)
+                        : NoTrips;
+        }
+
+        private static void Validate(User.User loggedInUser)
         {
             if (loggedInUser == null)
             {
                 throw new UserNotLoggedInException();
             }
-
-            return user.IsFriendsWith(loggedInUser)
-                        ? _tripDAO.TripsBy(user)
-                        : NoTrips;
         }
     }
 }

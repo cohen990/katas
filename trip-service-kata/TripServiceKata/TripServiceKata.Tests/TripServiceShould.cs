@@ -32,7 +32,7 @@ namespace TripServiceKata.Tests
         public void ShouldThrowAnExceptionsWhenUserIsNotLoggedIn()
         {
             Assert.Throws<UserNotLoggedInException>(
-                () => _tripService.GetTripsByUser(UnusedUser, Guest));
+                () => _tripService.GetFriendTrips(UnusedUser, Guest));
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace TripServiceKata.Tests
                 .WithTrips(ToBrazil)
                 .Build();
 
-            var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
+            var friendTrips = _tripService.GetFriendTrips(friend, RegisteredUser);
 
             Assert.IsEmpty(friendTrips);
         }
@@ -57,7 +57,7 @@ namespace TripServiceKata.Tests
                 .Build();
 
             _tripDao.TripsBy(friend).Returns(friend.Trips());
-            var friendTrips = _tripService.GetTripsByUser(friend, RegisteredUser);
+            var friendTrips = _tripService.GetFriendTrips(friend, RegisteredUser);
 
             Assert.AreEqual(2, friendTrips.Count);
         }
