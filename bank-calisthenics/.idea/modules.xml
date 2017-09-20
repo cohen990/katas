@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bank-calisthenics.iml" filepath="$PROJECT_DIR$/.idea/modules/bank-calisthenics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bank-calisthenics_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bank-calisthenics_main.iml" group="bank-calisthenics" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bank-calisthenics_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bank-calisthenics_test.iml" group="bank-calisthenics" />
+    </modules>
+  </component>
+</project>

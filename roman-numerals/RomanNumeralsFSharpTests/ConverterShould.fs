@@ -3,6 +3,8 @@ module Tests
 open System
 open Xunit
 open RomanNumeralsFSharp
+open FsUnit
+open FsUnit.Xunit
 
 [<Theory>]
 [<InlineData(1, "I")>]
@@ -31,5 +33,6 @@ open RomanNumeralsFSharp
 [<InlineData(3419, "MMMCDXIX")>]
 [<InlineData(3999, "MMMCMXCIX")>]
 let ``Return Roman Numerals When Given Arabic Numerals`` (arabicNumeral, romanNumeral) =
-    let result = RomanNumerals.FromArabic arabicNumeral;
-    Assert.Equal(romanNumeral, result)
+    arabicNumeral 
+    |> RomanNumerals.FromArabic 
+    |> should equal romanNumeral
