@@ -12,8 +12,7 @@ public class GameRunnerShould {
 
 	@Test
 	public void seeded_game_writes_expected_output() throws Exception {
-	    ByteArrayOutputStream content = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(content));
+        ByteArrayOutputStream content = interceptStandardOut();
         String expectedOutput = EXPECTED_OUTPUT_FOR_SEED_1;
 
         TestGameRunner gameRunner = new TestGameRunner();
@@ -22,7 +21,13 @@ public class GameRunnerShould {
         assertEquals(expectedOutput, actualOutput);
 	}
 
-	private class TestGameRunner extends GameRunner {
+    private ByteArrayOutputStream interceptStandardOut() {
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(content));
+        return content;
+    }
+
+    private class TestGameRunner extends GameRunner {
         public void test_banana(long seed){
             banana(new Random(seed));
         }
