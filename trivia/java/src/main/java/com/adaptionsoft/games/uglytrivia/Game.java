@@ -31,8 +31,6 @@ public class Game {
 	}
 
 	public boolean add(String playerName) {
-		
-		
 	    players.add(playerName);
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
@@ -50,7 +48,7 @@ public class Game {
 	public void roll(int roll) {
 		System.out.println(players.get(currentPlayer) + " is the current player");
 		System.out.println("They have rolled a " + roll);
-		
+
 		if (inPenaltyBox[currentPlayer]) {
 			if (roll % 2 != 0) {
 				isGettingOutOfPenaltyBox = true;
@@ -91,7 +89,7 @@ public class Game {
 		if (currentCategory() == "Sports")
 			System.out.println(sportsQuestions.removeFirst());
 		if (currentCategory() == "Rock")
-			System.out.println(rockQuestions.removeFirst());		
+			System.out.println(rockQuestions.removeFirst());
 	}
 	
 	
@@ -109,49 +107,57 @@ public class Game {
 	}
 
 	public boolean wasCorrectlyAnswered() {
-		if (inPenaltyBox[currentPlayer]){
-			if (isGettingOutOfPenaltyBox) {
-				System.out.println("Answer was correct!!!!");
-				purses[currentPlayer]++;
-				System.out.println(players.get(currentPlayer) 
-						+ " now has "
-						+ purses[currentPlayer]
-						+ " Gold Coins.");
-				
-				boolean winner = didPlayerWin();
-				moveToNextPlayersTurn();
-				
-				return winner;
-			} else {
-				moveToNextPlayersTurn();
+		if (shouldSkipTurn()) {
+            moveToNextPlayersTurn();
 				return true;
-			}
-			
-			
-			
-		} else {
-		
-			System.out.println("Answer was corrent!!!!");
-			purses[currentPlayer]++;
-			System.out.println(players.get(currentPlayer) 
-					+ " now has "
-					+ purses[currentPlayer]
-					+ " Gold Coins.");
-			
-			boolean winner = didPlayerWin();
-			moveToNextPlayersTurn();
-			
-			return winner;
 		}
+
+		return answerCorrectly();
 	}
-	
-	public boolean wrongAnswer(){
+
+	private boolean shouldSkipTurn() {
+		return inPenaltyBox[currentPlayer] &&
+			!isGettingOutOfPenaltyBox;
+	}
+
+	private boolean answerCorrectly() {
+		reportCorrectAnswer();
+		rewardPlayerForCorrectAnswer();
+
+		boolean isWinner = playerIsWinner();
+		moveToNextPlayersTurn();
+		return isWinner;
+	}
+
+	private void rewardPlayerForCorrectAnswer() {
+		purses[currentPlayer]++;
+		reportGold();
+	}
+
+	private void reportGold() {
+		System.out.println(players.get(currentPlayer)
+                + " now has "
+                + purses[currentPlayer]
+                + " Gold Coins.");
+	}
+
+	private void reportCorrectAnswer() {
+		System.out.println("Answer was correct!!!!");
+	}
+
+	public void answerIncorrectly(){
+		reportIncorrectAnswer();
+		putCurrentPlayerInPenaltyBox();
+		moveToNextPlayersTurn();
+	}
+
+	private void reportIncorrectAnswer() {
 		System.out.println("Question was incorrectly answered");
+	}
+
+	private void putCurrentPlayerInPenaltyBox() {
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
-
-		moveToNextPlayersTurn();
-		return true;
 	}
 
 	private void moveToNextPlayersTurn() {
@@ -160,7 +166,7 @@ public class Game {
 	}
 
 
-	private boolean didPlayerWin() {
+	private boolean playerIsWinner() {
 		return !(purses[currentPlayer] == 6);
 	}
 }

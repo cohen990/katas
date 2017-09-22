@@ -71,7 +71,7 @@ public class GameShould {
         Add(CHET);
 
         Roll(1);
-        game.wrongAnswer();
+        game.answerIncorrectly();
 
         String expected =
                 CHET_ADDED_TEXT +
@@ -107,7 +107,7 @@ public class GameShould {
         Add(CHET);
 
         Roll(1);
-        game.wrongAnswer();
+        game.answerIncorrectly();
         Roll(1);
 
         String expected =
@@ -159,7 +159,7 @@ public class GameShould {
                     "Rock Question 0\n";
 
     private static final String CHET_ANSWERED_CORRECTLY =
-            "Answer was corrent!!!!\n" +
+            "Answer was correct!!!!\n" +
                     "Chet now has 1 Gold Coins.\n";
 
     private static final String CHET_ANSWERED_INCORRECTLY =
