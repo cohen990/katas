@@ -37,13 +37,14 @@ public class GameRunner {
 	}
 
     private static boolean evaluateGameState(Game game) {
-		if (answerIsIncorrect())
-            return game.wrongAnswer();
+		if (answerIsCorrect())
+            return game.wasCorrectlyAnswered();
 
-        return game.wasCorrectlyAnswered();
+        game.answerIncorrectly();
+        return true;
 	}
 
-    private static boolean answerIsIncorrect() {
-        return random.nextInt(9) == 7;
+    private static boolean answerIsCorrect() {
+        return random.nextInt(9) != 7;
     }
 }
