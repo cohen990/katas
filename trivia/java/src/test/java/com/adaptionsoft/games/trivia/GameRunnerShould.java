@@ -16,7 +16,7 @@ public class GameRunnerShould {
         String expectedOutput = EXPECTED_OUTPUT_FOR_SEED_1;
 
         TestGameRunner gameRunner = new TestGameRunner();
-        gameRunner.test_banana(1);
+        gameRunner.test_runGame(1);
         String actualOutput = content.toString();
         assertEquals(expectedOutput, actualOutput);
 	}
@@ -28,8 +28,8 @@ public class GameRunnerShould {
     }
 
     private class TestGameRunner extends GameRunner {
-        public void test_banana(long seed){
-            banana(new Random(seed));
+        public void test_runGame(long seed){
+            runGame(new Random(seed));
         }
     }
 
